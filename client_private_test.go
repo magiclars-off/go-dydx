@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	dydx "github.com/go-numb/go-dydx"
-	"github.com/go-numb/go-dydx/helpers"
-	"github.com/go-numb/go-dydx/private"
-	"github.com/go-numb/go-dydx/realtime"
-	"github.com/go-numb/go-dydx/types"
+	dydx "github.com/magiclars-off/go-dydx"
+	"github.com/magiclars-off/go-dydx/helpers"
+	"github.com/magiclars-off/go-dydx/private"
+	"github.com/magiclars-off/go-dydx/realtime"
+	"github.com/magiclars-off/go-dydx/types"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -24,8 +24,12 @@ const (
 var userID int64 = 0
 
 var options = types.Options{
+	NetworkId:                 types.NetworkIdGoerli,
 	Host:                      types.ApiHostGoerli,
 	DefaultEthereumAddress:    EthereumAddress,
+	StarkPublicKey:            "",
+	StarkPrivateKey:           "",
+	StarkPublicKeyYCoordinate: "",
 	ApiKeyCredentials: &types.ApiKeyCredentials{
 		Key:        "",
 		Secret:     "",
@@ -78,33 +82,37 @@ func TestUsers(t *testing.T) {
 
 func TestCreateOrder(t *testing.T) {
 	client := dydx.New(options)
+
+	acc, err := client.Private.GetAccount(client.Private.DefaultAddress)
+	assert.NoError(t, err)
+	positionId := acc.Account.PositionId
+
 	o := &private.ApiOrder{
 		ApiBaseOrder: private.ApiBaseOrder{Expiration: helpers.ExpireAfter(5 * time.Minute)},
 		Market:       "ETH-USD",
 		Side:         "BUY",
 		Type:         "LIMIT",
 		Size:         "1",
-		Price:        "2500",
+		Price:        "1000",
 		ClientId:     helpers.RandomClientId(),
 		TimeInForce:  "GTT",
 		PostOnly:     true,
 		LimitFee:     "0.01",
 	}
-	fmt.Printf("%+v\n", client.Private.NetworkId)
-	res, err := client.Private.CreateOrder(o, userID)
+	res, err := client.Private.CreateOrder(o, positionId)
 	assert.NoError(t, err)
 
 	fmt.Printf("%v", res)
 }
 
 // important!! Withdraw has not done any actual testing
-func TestWithdrawFast(t *testing.T) {
-	client := dydx.New(options)
-	res, err := client.Private.WithdrawFast(&private.WithdrawalParam{})
-	assert.NoError(t, err)
+// func TestWithdrawFast(t *testing.T) {
+// 	client := dydx.New(options)
+// 	res, err := client.Private.WithdrawFast(&private.WithdrawalParam{})
+// 	assert.NoError(t, err)
 
-	fmt.Printf("%v", res)
-}
+// 	fmt.Printf("%v", res)
+// }
 
 func TestGetHistoricalPnL(t *testing.T) {
 	client := dydx.New(options)

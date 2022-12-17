@@ -33,8 +33,8 @@ type ApiOrder struct {
 	Size            string `json:"size"`
 	Price           string `json:"price"`
 	ClientId        string `json:"clientId"`
-	TimeInForce     string `json:"timeInForce"`
 	LimitFee        string `json:"limitFee"`
+	TimeInForce     string `json:"timeInForce,omitempty"`
 	CancelId        string `json:"cancelId,omitempty"`
 	TriggerPrice    string `json:"triggerPrice,omitempty"`
 	TrailingPercent string `json:"trailingPercent,omitempty"`
