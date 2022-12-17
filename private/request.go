@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/go-numb/go-dydx/helpers"
+	"github.com/magiclars-off/go-dydx/helpers"
 
 	"github.com/yanue/starkex"
 )

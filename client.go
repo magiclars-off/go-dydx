@@ -6,13 +6,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-numb/go-dydx/types"
+	"github.com/magiclars-off/go-dydx/types"
 	"github.com/umbracle/ethgo/jsonrpc"
 
-	"github.com/go-numb/go-dydx/helpers"
-	"github.com/go-numb/go-dydx/onboard"
-	"github.com/go-numb/go-dydx/private"
-	"github.com/go-numb/go-dydx/public"
+	"github.com/magiclars-off/go-dydx/helpers"
+	"github.com/magiclars-off/go-dydx/onboard"
+	"github.com/magiclars-off/go-dydx/private"
+	"github.com/magiclars-off/go-dydx/public"
 )
 
 type Client struct {
@@ -62,7 +62,7 @@ func New(options types.Options) *Client {
 	}
 
 	if client.NetworkId == 0 {
-		client.NetworkId = types.NetworkIdMainnet
+		client.NetworkId = types.NetworkIdGoerli
 	}
 
 	if options.StarkPrivateKey != "" {

@@ -1,5 +1,6 @@
 # go-dydx
-![dYdX exhange DEX](https://github.com/go-numb/go-dydx/blob/master/types/icon.png)
+
+![dYdX exhange DEX](https://github.com/magiclars-off/go-dydx/blob/master/types/icon.png)
 
 dYdX exchange API version3.
 
@@ -10,6 +11,7 @@ part OnBoarding referred to [verichenn/dydx-v3-go](https://github.com/verichenn/
 go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.exchange).
 
 ## Support
+
 - [x] private/websocket, public/websocket
 - [x] private/users
 - [x] private/accounts
@@ -26,7 +28,9 @@ go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.e
 - [x] public/historical-funding
 
 ## Usage
+
 ### Rest
+
 ```go
 package main
 
@@ -36,10 +40,10 @@ import (
 
 	"github.com/labstack/gommon/log"
 
-	"github.com/go-numb/go-dydx"
-	"github.com/go-numb/go-dydx/helpers"
-	"github.com/go-numb/go-dydx/private"
-	"github.com/go-numb/go-dydx/types"
+	"github.com/magiclars-off/go-dydx"
+	"github.com/magiclars-off/go-dydx/helpers"
+	"github.com/magiclars-off/go-dydx/private"
+	"github.com/magiclars-off/go-dydx/types"
 )
 
 const (
@@ -103,6 +107,7 @@ func main() {
 ```
 
 ### Websocket
+
 ```go
 
 package main
@@ -113,9 +118,9 @@ import (
 	"time"
 	"log"
 
-	"github.com/go-numb/go-dydx"
-	"github.com/go-numb/go-dydx/public"
-	"github.com/go-numb/go-dydx/realtime"
+	"github.com/magiclars-off/go-dydx"
+	"github.com/magiclars-off/go-dydx/public"
+	"github.com/magiclars-off/go-dydx/realtime"
 )
 
 
@@ -177,8 +182,8 @@ EXIT:
 
 ## Author
 
-[@_numbP](https://twitter.com/_numbP)
+[@\_numbP](https://twitter.com/_numbP)
 
 ## License
 
-[MIT](https://github.com/go-numb/go-dydx/blob/master/LICENSE)
+[MIT](https://github.com/magiclars-off/go-dydx/blob/master/LICENSE)

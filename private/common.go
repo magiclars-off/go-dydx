@@ -7,13 +7,13 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 	"time"
 
-	"github.com/go-numb/go-dydx/helpers"
+	"github.com/magiclars-off/go-dydx/helpers"
 )
 
 func (p *Private) get(endpoint string, params url.Values) ([]byte, error) {
@@ -61,7 +61,7 @@ func (p *Private) request(method, endpoint string, data string) ([]byte, error) 
 		return nil, fmt.Errorf("uri: %v , status code: %d", requestPath, res.StatusCode)
 	}
 
-	b, err := ioutil.ReadAll(res.Body)
+	b, err := io.ReadAll(res.Body)
 	p.Logger.Printf("uri: %s, response body: %s", requestPath, b)
 	return b, err
 }
