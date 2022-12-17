@@ -21,13 +21,10 @@ const (
 	StarkKey        = ""
 )
 
-var userID int64 = 1
+var userID int64 = 0
 
 var options = types.Options{
-	Host:                      types.ApiHostMainnet,
-	StarkPublicKey:            "",
-	StarkPrivateKey:           "",
-	StarkPublicKeyYCoordinate: "",
+	Host:                      types.ApiHostGoerli,
 	DefaultEthereumAddress:    EthereumAddress,
 	ApiKeyCredentials: &types.ApiKeyCredentials{
 		Key:        "",
@@ -39,10 +36,8 @@ var options = types.Options{
 func TestConnect(t *testing.T) {
 	client := dydx.New(options)
 
-	account, err := client.Private.GetAccount(client.Private.DefaultAddress)
+	_, err := client.Private.GetAccount(client.Private.DefaultAddress)
 	assert.NoError(t, err)
-
-	fmt.Println(account)
 
 	parent := context.Background()
 	ctx, cancel := context.WithCancel(parent)
@@ -102,7 +97,7 @@ func TestCreateOrder(t *testing.T) {
 	fmt.Printf("%v", res)
 }
 
-// important!! WithDraw has not done any actual testing
+// important!! Withdraw has not done any actual testing
 func TestWithdrawFast(t *testing.T) {
 	client := dydx.New(options)
 	res, err := client.Private.WithdrawFast(&private.WithdrawalParam{})
