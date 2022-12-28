@@ -55,7 +55,7 @@ func (p *Private) CreateOrder(input *ApiOrder, positionId int64) (*OrderResponse
 	}
 	signature, err := starkex.OrderSign(p.StarkPrivateKey, orderSignParam)
 	if err != nil {
-		return nil, errors.New("sign error")
+		return nil, fmt.Errorf("sign error: %s", err.Error())
 	}
 	input.Signature = signature
 
